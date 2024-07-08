@@ -1,0 +1,59 @@
+INTRODUCAO
+1- O que é ngrx
+-é uma biblioteca em javascript para gerenciamento de estados da aplicação
+
+-
+
+2- Porque usar?
+-quando se tem uma aplicação complexa com vários componentes que compartilham os mesmos dados e esses dados são alterados por um componente, os outros precisam ser imediatamente notificados, é necessário criar várias linhas de código para saber onde estes dados foram alterados, quais foram as alterações realizadas e notificar os outros componentes sobre estas alterações.
+
+-PREVISIVEL, ajuda a escrever aplicações que se comportam de forma consistente e em vários ambientes(cliente, servidor)
+
+-CENTRALIZADO, qualquer componente pode acessar qualquer estado sem a necessidade de transportar informações entre os componentes.
+
+-DEPURÁVEL, existe uma extensão chamada REDUX DEVTOOLS para depurar aplicações REDUX, tornando possível saber quando, onde, porque e como o estado da aplicação mudou.
+
+-com o controle de estados é possível saber como, quando, onde e porque um dado sofreu determinada alteração.
+
+3- Como surgiu
+-o facebook se deparou com este problema de controle de estados dos componentes e criou a arquitetura FLUX.
+
+4- Como funciona?
+-todos os estados da aplicação ficam armazenados no STORE que é um objeto javascript, centralizando os estados dos componentes, e quando um componente precisa de alguma informação ele só precisa consultar o STORE. É um tipo de banco de dados para o front-end.
+
+-ACTION
+Descreve a mudança de estado da aplicação, expressa um evento único na aplicação
+Sempre tem duas actions, uma para realizar a ação e outra para dar a resposta da ação realizada.
+
+-EFFECTS
+É um middleware que fica entre o SERVIÇO e a ACTION, é nele que implementamos as lógicas assíncronas como buscar dados no banco, salvar arquivos, etc.
+É aqui que fazemos todas as operações que geram efeitos colaterais que não pode acontecer no REDUCER.
+
+-REDUCER
+o REDUCER é uma função que recebe como parâmetro um STATE e uma ACTION e retorna um novo STATE, ou seja, retorna o novo estado modificado pela action. 
+O REDUCER nunca deve gerar um efeito colateral que é qualquer mudança de estado ou comportamento que pode ser visto fora do REDUCER.
+É definido como efeito colateral tudo o que não for o simples retorno de um valor, ex: usar o console.log(), salvar um arquivo ou realizar requisições http, estas ações são realizadas pelo EFFECT.
+
+
+
+-SELECTOR
+o SELECTOR fica entre o componente e o store, é uma função que recebe um estado e retorna os dados baseados neste estado. Ex: retornar apenas as mensagens com estado "unread". 
+O componente lê informações do store usando um selector.
+
+
+
+-CREATE REDUCER
+A função ON  que fica dentro da "createReducer" funciona como um "switch case", onde o "case" é o nome da ACTION executada.
+Ex: 
+on(saveBookApiSuccess, (state, { response })=>{
+        let newState= [...state];//-o novo estado é uma cópia do estado anterior
+        newState.unshift(response);//-adicionando novas informações na cópia do estado anterior
+        return newState;
+    })
+
+
+on([nome da action executada], ([estado atual], { [dados para o novo estado] })=>{
+        let newState= [...state];//-o novo estado é uma cópia do estado anterior
+        newState.unshift(response);//-adicionando novas informações na cópia do estado anterior
+        return newState;
+    })
