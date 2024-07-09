@@ -51,6 +51,10 @@ export class LivrosServico {
     // return of(this._listaLivros);
   }
 
+  public buscarLivroPorId(id:number):Observable<Livro>{
+    return this._http.get<Livro>(this._url + "BuscarLivroPorId/" + id);
+  }
+
   public salvarLivro(novoLivro:Livro):Observable<Livro>{
     this._listaLivros = Object.assign([], this._listaLivros);
     this._listaLivros.push(novoLivro);

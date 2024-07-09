@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this._servico.buscarTodosLivros().subscribe({
-      next: data=> this.listaLivros= data,
+      next: data=> {console.log(data); this.listaLivros= data},
       error: err=> console.log(err)
     });
   }

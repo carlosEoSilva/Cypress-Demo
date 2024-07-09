@@ -1,48 +1,45 @@
-<!-- <div class="add-container">
+<div class="add-container">
   
   <div class="form-container">
 
-    <form #bookForm='ngForm' (ngSubmit)="editarLivro(bookForm)">
+    <form [formGroup]="formEditar" (ngSubmit)="editarLivro(formEditar)">
+      
     <mat-form-field class="form-input" appearance="legacy">
-      <mat-label>Title</mat-label>
+      <mat-label>Titulo</mat-label>
       <input 
         name="titulo"
-        [(ngModel)]="livroEditar.titulo"
-        #titulo="ngModel"
+        formControlName="inputTitulo"
         matInput 
         required
         placeholder="">
     </mat-form-field>
 
     <mat-form-field class="form-input" appearance="legacy">
-      <mat-label>Author</mat-label>
+      <mat-label>Autor</mat-label>
       <input 
         name="autor"
-        [(ngModel)]="livroEditar.autor"
-        #autor="ngModel"
+        formControlName="inputAutor"
         required
         matInput 
         placeholder="">
     </mat-form-field>
 
     <mat-form-field class="form-input" appearance="legacy">
-      <mat-label>Cover Url</mat-label>
+      <mat-label>Url Capa</mat-label>
       <input 
         name="capa"
-        [(ngModel)]="livroEditar.capa"
-        #capa="ngModel"
         required
-        (focusout)="preview(capa)"
+        formControlName="inputCapa"
+        (focusout)="previewCapa()"
         matInput 
         placeholder="">
     </mat-form-field>
 
     <mat-form-field class="form-input" appearance="legacy">
-      <mat-label>Price</mat-label>
+      <mat-label>Data lançamento</mat-label>
       <input 
         name="lancamento"
-        [(ngModel)]="livroEditar.lancamento"
-        #lancamento="ngModel"
+        formControlName="inputLancamento"
         required
         matInput 
         placeholder="">
@@ -50,7 +47,7 @@
 
     <button type="submit" class="btn-save" mat-button color="primary">Save</button>
 
-    <button (click)="apagarLivro()" mat-button class="warning">Apagar</button>
+    <button (click)="apagarLivro()" mat-button class="btn-delete">Apagar</button>
     
     </form>
   </div>
@@ -58,4 +55,4 @@
   <div class="cover-container">
     <img class="cover-preview" [src]="capaPreview">  
   </div>
-</div>  -->
+</div> 
