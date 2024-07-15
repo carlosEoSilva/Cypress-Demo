@@ -1,53 +1,53 @@
 <div class="add-container">
   
   <div class="form-container">
-    <form #bookForm='ngForm' (ngSubmit)="saveBook(bookForm)">
+    <form [formGroup]="livroForm" (ngSubmit)="salvarLivro(livroForm)">
     <mat-form-field class="form-input" appearance="legacy">
-      <mat-label>Title</mat-label>
+      <mat-label>Titulo</mat-label>
       <input 
         name="bookTitle"
-        ngModel
-        #bookName="ngModel"
+        formControlName="inputTitulo"
         matInput 
         required
         placeholder="">
     </mat-form-field>
 
     <mat-form-field class="form-input" appearance="legacy">
-      <mat-label>Author</mat-label>
+      <mat-label>Autor</mat-label>
       <input 
         name="bookAuthor"
-        ngModel
-        #bookAuthor="ngModel"
+        formControlName="inputAutor"
         required
         matInput 
         placeholder="">
     </mat-form-field>
 
     <mat-form-field class="form-input" appearance="legacy">
-      <mat-label>Cover Url</mat-label>
+      <mat-label>Url da capa</mat-label>
       <input 
         name="bookCover"
-        ngModel
-        #bookCover="ngModel"
+        formControlName="inputCapa"
         required
-        (focusout)="preview(bookCover)"
+        (focusout)="preview()"
         matInput 
         placeholder="">
     </mat-form-field>
 
     <mat-form-field class="form-input" appearance="legacy">
-      <mat-label>Price</mat-label>
+      <mat-label>Data lançamento</mat-label>
       <input 
-        name="bookPrice"
-        ngModel
-        #bookPrice="ngModel"
-        required
         matInput 
-        placeholder="">
-    </mat-form-field>
+        formControlName="inputLancamento" 
+        [matDatepicker]="picker" 
+        (click)="picker.open()">
+      
+        <mat-datepicker-toggle matSuffix [for]="picker" style="background-color:#ec0101e6;"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field> 
 
-    <button type="submit" class="btn-save" mat-button color="primary">Save</button>
+    <button type="submit" class="btn-save" mat-button >Salvar</button>
+    
+    <button type="button" class="btn-voltar" mat-button routerLink="/home" >Voltar</button>
     </form>
   </div>
 

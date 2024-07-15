@@ -1,0 +1,65 @@
+<div class="modal-container">
+<form [formGroup]="loanForm" class="modal-form">
+
+      <mat-form-field appearance="legacy">
+        <mat-label>Nome</mat-label>
+        <mat-select >
+          <mat-option *ngFor="let cliente of listaClientes" (click)= clienteSelecionado(cliente) value={{cliente.id}} appearance="legacy">{{cliente.nome}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="form-input" appearance="legacy">
+        <mat-label>Telefone</mat-label>
+        <input 
+          name="telefone"
+          formControlName="inputTelefone"
+          matInput 
+          required
+          placeholder="">
+      </mat-form-field>
+
+      <mat-form-field class="form-input" appearance="legacy">
+        <mat-label>Endereço</mat-label>
+        <input 
+          name="endereco"
+          formControlName="inputEndereco"
+          matInput 
+          required
+          placeholder="">
+      </mat-form-field>
+
+      <mat-form-field class="form-input" appearance="legacy">
+        <mat-label>Livro</mat-label>
+        <input 
+          name="titulo"
+          formControlName="inputTitulo"
+          matInput 
+          required
+          placeholder="">
+      </mat-form-field>
+
+      <mat-form-field appearance="legacy">
+        <mat-label>Choose a date</mat-label>
+        <input formControlName="inputEntrega" matInput [matDatepicker]="picker">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+
+      <!-- <mat-form-field class="form-input" appearance="legacy">
+        <mat-label>Previsão de entrega</mat-label>
+        <input 
+          name="entrega"
+          formControlName="inputEntrega"
+          matInput 
+          required
+          placeholder="">
+      </mat-form-field> -->
+
+      <button type="submit" class="btn-save" mat-button>Confirmar</button>
+
+      <button type="button" (click)="fecharModal()" mat-button class="btn-voltar">Voltar</button>
+
+</form>
+</div>

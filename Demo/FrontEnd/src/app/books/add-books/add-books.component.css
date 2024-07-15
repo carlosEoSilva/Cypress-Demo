@@ -11,10 +11,18 @@ form{
 
 .btn-save{
     display: block;
-    background-color: #f64949e6;
+    background-color: #047b22e6;
     color: #eee9e9;
     width: 100px;
-    margin: auto;
+    margin: 10px auto auto auto;
+}
+
+.btn-voltar{
+    display: block;
+    background-color: #c68203e6;
+    color: #eee9e9;
+    width: 100px;
+    margin: 10px auto auto auto;
 }
 
 .cover-preview{

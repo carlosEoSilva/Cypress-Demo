@@ -4,7 +4,9 @@
     <mat-card-title-group>
       <mat-card-title>{{ livro.titulo }}</mat-card-title>
       <mat-card-subtitle>{{ livro.autor }}</mat-card-subtitle>
-      <mat-card-subtitle class="label-status">Disponível</mat-card-subtitle>
+      
+      <mat-card-subtitle *ngIf="livro.situacao === 'D'" class="label-status disponivel">Disponível</mat-card-subtitle>
+      <mat-card-subtitle *ngIf="livro.situacao === 'E'" class="label-status emprestado">Indisponível</mat-card-subtitle>
 
       <img class="book-cover" mat-card-md-image src="{{ livro.capa }}" >
     </mat-card-title-group>
@@ -14,8 +16,9 @@
     </mat-card-content>
 
     <mat-card-actions>
-      <button mat-button class="btn-warn" [routerLink]="['/edit', livro.id]">Emprestar</button>
-      <button mat-button class="btn-success" [routerLink]="['/edit', livro.id]">Devolver</button>
+      <button mat-button class="btn-warn" disabled="false" [routerLink]="['/edit', livro.id]">Editar</button>
+
+      <button mat-button class="btn-success" (click)="openDialog()">Emprestar</button>
     </mat-card-actions>
 
 </mat-card>

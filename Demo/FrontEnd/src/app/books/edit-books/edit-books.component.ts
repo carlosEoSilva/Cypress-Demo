@@ -29,7 +29,7 @@ export class EditBooksComponent implements OnInit {
   public formEditar:FormGroup= new FormGroup({
     inputAutor: new FormControl(),
     inputCapa: new FormControl(),
-    inputLancamento: new FormControl(),
+    inputLancamento: new FormControl(new Date()),
     inputTitulo: new FormControl()
   })
 
@@ -39,6 +39,7 @@ export class EditBooksComponent implements OnInit {
       this._servico.buscarLivroPorId(this._livroId).subscribe({
         next: (resp)=> {
           this.livroEditar= resp;
+          console.log(resp);
           this._preencherForm(this.livroEditar);
         },
         error: err => console.log(err)
@@ -61,12 +62,19 @@ export class EditBooksComponent implements OnInit {
         return
       }
 
-      this.livroEditar.autor= form.value.autor;
-      this.livroEditar.capa= form.value.capa;
-      this.livroEditar.lancamento= form.value.lancamento;
-      this.livroEditar.titulo= form.value.titulo;
+      let livro:Livro= new Livro();
+
+      livro.id= this._livroId;
+      livro.autor= form.value.inputAutor;
+      livro.capa= form.value.inputCapa;
+      livro.lancamento= form.value.inputLancamento;
+      livro.titulo= form.value.inputTitulo;
+
+      this._servico.editarLivro(livro).subscribe({
+        next: () => this._router.navigate(['/'])
+      });
       
-      this._router.navigate(['/']);
+      
     }
 
     public previewCapa(){
@@ -87,14 +95,20 @@ export class EditBooksComponent implements OnInit {
     }
 
     public openSnackBarDelete() {
-      this._snackBar.open("Book removed", "",{
+      this._snackBar.open("Livro removido", "",{
         duration: 3000,
         panelClass: 'snack-bar'
       });
     }
 
     public apagarLivro(){
-
+      this._servico.apagarLivro(Number(this._livroId)).subscribe({
+        next: () => { 
+          this.openSnackBarDelete; 
+          // this._router.navigate(['/'])
+        },
+        error: err=> console.log(err)
+      })
     }
 
   

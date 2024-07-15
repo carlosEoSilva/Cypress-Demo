@@ -26,9 +26,17 @@
 }
 
 .label-status{
-    background-color: #ADD899;
+   
     text-align: center;
     color:black;
     width: 100px;
     border-radius: 50px 20px;
+}
+
+.disponivel{
+    background-color: #ADD899;
+}
+
+.emprestado{
+    background-color: #ada500;
 }

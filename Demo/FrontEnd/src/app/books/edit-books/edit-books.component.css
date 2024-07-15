@@ -14,12 +14,20 @@ form{
     background-color: #047b22e6;
     color: #eee9e9;
     width: 100px;
-    margin: auto;
+    margin: 10px auto auto auto;
 }
 
 .btn-delete{
     display: block;
     background-color: rgb(255, 21, 21);
+    color: #eee9e9;
+    width: 100px;
+    margin: 10px auto auto auto;
+}
+
+.btn-voltar{
+    display: block;
+    background-color: #c68203e6;
     color: #eee9e9;
     width: 100px;
     margin: 10px auto auto auto;

@@ -1,1 +1,33 @@
-<p>login works!</p>
+<div class="form-container">
+
+    <h4>Bem vindo!</h4>
+    
+    <form [formGroup]="loginForm" action="">
+
+        <mat-form-field class="form-input" appearance="legacy">
+            <mat-label>Usuário</mat-label>
+            <input 
+              name="username"
+              formControlName="inputUserName"
+              matInput 
+              required
+              placeholder="">
+        </mat-form-field>
+
+        <mat-form-field class="form-input" appearance="legacy">
+            <mat-label>Senha</mat-label>
+            <input 
+              name="senha"
+              formControlName="inputSenha"
+              matInput 
+              required
+              type="password"
+              placeholder="">
+        </mat-form-field>
+
+        <button type="button" (click)="login('ss', 'ss')" class="btn-save" mat-button>Entrar</button>
+
+        <button type="button" routerLink="/home" mat-button class="btn-voltar">Voltar</button>
+    
+    </form>
+</div>

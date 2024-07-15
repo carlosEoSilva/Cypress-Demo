@@ -7,6 +7,7 @@ import { LivrosRoutingModule } from './livros-routing.module';
 import { HomeComponent } from './home/home.component';
 import { AddBooksComponent } from './add-books/add-books.component';
 import { EditBooksComponent } from './edit-books/edit-books.component';
+import { LoanModalComponent } from './loan-modal/loan-modal.component';
 
 //-Angular material
 import { MatButtonModule } from '@angular/material/button';
@@ -16,13 +17,18 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { LoginComponent } from './login/login.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
+import {MatSelectModule} from '@angular/material/select';
+
 
 @NgModule({
   declarations: [
     HomeComponent,
     AddBooksComponent,
     EditBooksComponent,
-    LoginComponent
+    LoginComponent,
+    LoanModalComponent
   ],
   imports: [
     CommonModule,
@@ -34,7 +40,14 @@ import { LoginComponent } from './login/login.component';
     MatInputModule,
     MatSnackBarModule,
     MatButtonModule,
-    MatDialogModule
+    MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSelectModule
+  ],
+  providers:[
+    MatDatepickerModule,
+    {provide: MAT_DATE_LOCALE, useValue: 'pt-BR'}
   ]
 })
 export class LivrosModule { }

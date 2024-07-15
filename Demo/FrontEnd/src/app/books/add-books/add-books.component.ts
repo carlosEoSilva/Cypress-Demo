@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm, NgModel } from '@angular/forms';
+import { FormControl, FormGroup, NgForm, NgModel } from '@angular/forms';
 import { LivrosServico } from '../livros.service';
 import { Livro } from '../../classes/livro.class';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { SnackbarComponent } from 'src/app/shared/snackbar/snackbar.component';
+import { NovoLivro } from 'src/app/classes/novoLivro';
 
 @Component({
   selector: 'app-add-books',
@@ -24,33 +25,60 @@ export class AddBooksComponent implements OnInit {
   ngOnInit(): void { 
   }
 
-  preview(cover:NgModel){
-    console.log(cover.value);
+  public livroForm:FormGroup= new FormGroup({
+    inputAutor:new FormControl(),
+    inputCapa: new FormControl(),
+    inputLancamento: new FormControl(),
+    inputTitulo: new FormControl()
+  })
 
-    if(cover.value != '')
-      this.coverPreview= cover.value;
+  preview(){
+    let cover= this.livroForm.controls['inputCapa'].value;
+
+    if(cover != '')
+      this.coverPreview= cover;
     else
       this.coverPreview= this.defaultCover;
   }
 
-  saveBook(form:NgForm){
+  public salvarLivro(form:FormGroup){
     
     if(!form.valid){
       this.openSnackBar();
       return
     }
 
-    let newBook= new Livro(
-      this._servico.getProximoId(),
-      form.value.bookTitle,
-      form.value.bookAuthor,
-      form.value.bookCover,
-      form.value.bookPrice
+    let novoLivro= new NovoLivro(
+      form.value.inputTitulo,
+      form.value.inputAutor,
+      form.value.inputCapa,
+      form.value.inputLancamento,
+      'D'
     );
 
+    this._servico.novoLivro(novoLivro).subscribe({
+      next: (data)=>{
+        if(data){
+          this.openSnackBarSave();
+          this._limparForm();
+
+        }
+        else
+          this.openSnackBar()
+      },
+      error: err => console.log(err)
+    })
     
-    this._router.navigate(['/']);
-    this.openSnackBarSave();
+    // this._router.navigate(['/']);
+    // this.openSnackBarSave();
+  }
+
+  private _limparForm(){
+    this.livroForm.controls['inputTitulo'].setValue('');
+    this.livroForm.controls['inputAutor'].setValue('');
+    this.livroForm.controls['inputCapa'].setValue('');
+    this.livroForm.controls['inputLancamento'].setValue('');
+    this.coverPreview= this.defaultCover;
   }
 
   openSnackBar() {
