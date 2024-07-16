@@ -26,14 +26,21 @@ export class LoginComponent implements OnInit {
     inputSenha: new FormControl()  
   });
 
-  public login(userName:string, senha:string){
-    this._servico.AdminLogin(userName, senha);
-
-    if(this._servico.getAutenticacao()){
-      this._router.navigateByUrl("home");
+  public login(form:FormGroup){
+    if(!form.valid){
+      this._snackBar.abrir("usuário ou senha inválidos");
     }
     else{
-      this._snackBar.abrir("usuário ou senha inválidos");
+      let usuario= form.controls['inputUserName'].value;
+      let senha= form.controls['inputSenha'].value;
+
+      this._servico.AdminLogin(usuario, senha);
+      console.log(usuario, senha);
+
+      if(!this._servico.getAutenticacao())
+        this._snackBar.abrir("usuário ou senha inválidos");
+      else
+        this._router.navigateByUrl("home");
     }
   }
 

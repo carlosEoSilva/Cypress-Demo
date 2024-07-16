@@ -16,3 +16,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     background-color: #161A30 !important;
 }
 
+.mat-dialog-container{
+    background-color: #ddd;
+}
+
+.mat-input-element, .mat-select-min-line{
+    color: black !important;
+}
+
+
+
+

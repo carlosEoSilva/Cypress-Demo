@@ -10,6 +10,7 @@ import { SnackbarComponent } from './shared/snackbar/snackbar.component';
 import { DialogComponent } from './shared/dialog/dialog.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LivrosModule } from './books/livros.module';
+import { FormGroup, FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [

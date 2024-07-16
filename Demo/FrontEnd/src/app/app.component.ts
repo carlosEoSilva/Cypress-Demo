@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AdminService } from './books/admin.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'AngularRedux';
+  constructor(
+    public srvAdmin:AdminService,
+    private _router:Router){}
+  title = 'Biblioteca';
+
+  public logOut():void{
+    this.srvAdmin.AdminLogout();
+    this._router.navigateByUrl("inicio");
+  }
 }
+

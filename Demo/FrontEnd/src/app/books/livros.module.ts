@@ -20,6 +20,8 @@ import { LoginComponent } from './login/login.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
+import { PaginaInicialComponent } from './pagina-inicial/pagina-inicial.component';
+import { ListaEmprestimosComponent } from './lista-emprestimos/lista-emprestimos.component';
 
 
 @NgModule({
@@ -28,7 +30,9 @@ import {MatSelectModule} from '@angular/material/select';
     AddBooksComponent,
     EditBooksComponent,
     LoginComponent,
-    LoanModalComponent
+    LoanModalComponent,
+    PaginaInicialComponent,
+    ListaEmprestimosComponent
   ],
   imports: [
     CommonModule,
